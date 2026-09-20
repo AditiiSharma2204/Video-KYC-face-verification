@@ -1,0 +1,31 @@
+# environments (the committed macOS virtualenv should never be in git)
+deepface_env/
+.venv/
+venv/
+env/
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# models, datasets and outputs
+.facematch/
+data/
+results/
+*.onnx
+*.h5
+*.weights.h5
+
+# NEVER commit identity documents or selfies
+*.pdf
+samples/private/

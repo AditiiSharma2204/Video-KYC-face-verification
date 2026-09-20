@@ -1,0 +1,3 @@
+# Convenience file for Streamlit Community Cloud / quick installs.
+# Source of truth for dependencies is pyproject.toml.
+-e .[ml,api,app]
