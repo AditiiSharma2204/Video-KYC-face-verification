@@ -1,6 +1,6 @@
 # Aadhaar Face Match
 
-[![CI](https://github.com/<your-username>/aadhaar-face-match/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-username>/aadhaar-face-match/actions)
+[![CI](https://github.com/AditiiSharma2204/aadhaar-face-match/actions/workflows/ci.yml/badge.svg)](https://github.com/AditiiSharma2204/aadhaar-face-match/actions)
 ![Python](https://img.shields.io/badge/python-3.10%E2%80%933.12-blue)
 
 Verify that a **live selfie** belongs to the person pictured on an **Aadhaar document** (e-Aadhaar PDF or scanned image).
@@ -59,7 +59,7 @@ Embeddings are compared by cosine distance against a per-model threshold (DeepFa
 Requires Python 3.10-3.12 (TensorFlow does not yet cover newer versions on every platform).
 
 ```bash
-git clone https://github.com/<your-username>/aadhaar-face-match && cd aadhaar-face-match
+git clone https://github.com/AditiiSharma2204/aadhaar-face-match && cd aadhaar-face-match
 python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -e ".[ml,api,app]"
 ```
