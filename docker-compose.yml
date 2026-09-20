@@ -1,0 +1,27 @@
+# API + MongoDB.   KYC_HASH_KEY=<long random secret> docker compose up --build
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+
+  api:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      MONGO_URI: mongodb://mongo:27017
+      MONGO_DB: videokyc
+      MONGO_TTL_DAYS: "90"          # auto-delete stored outcomes after 90 days
+      KYC_HASH_KEY: ${KYC_HASH_KEY:?set KYC_HASH_KEY to a long random secret}
+      KYC_STT: whisper              # or "none" to skip loading speech-to-text
+    volumes:
+      - models:/models
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:
+  models:

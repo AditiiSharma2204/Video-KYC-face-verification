@@ -4,22 +4,36 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "video-kyc-face-verification"
-version = "1.0.0"
-description = "Verify a live selfie against the photo on an Aadhaar document (detection, alignment, ArcFace embeddings, calibrated decisions, REST API and UI)."
+version = "2.0.0"
+description = "End-to-end Video KYC: government-ID OCR and classification, blink liveness, ArcFace face verification and voice KYC, with a REST API, Streamlit app and privacy-first storage."
 readme = "README.md"
 requires-python = ">=3.10"
+keywords = ["kyc", "video-kyc", "ocr", "face-recognition", "liveness", "aadhaar", "fastapi", "streamlit"]
 dependencies = [
     "numpy>=1.26",
-    "opencv-python>=4.8,<5",  # 5.x dropped CascadeClassifier (Haar fallback); full build because DeepFace requires it
+    # DeepFace requires the full opencv-python; 5.x dropped the Haar cascade we keep as an offline fallback.
+    "opencv-python>=4.8,<5",
     "pymupdf>=1.24",
+    "pytesseract>=0.3.10",
+    "pillow>=10.1",
 ]
 
 [project.optional-dependencies]
-ml = ["deepface>=0.0.93", "tf-keras>=2.16"]  # brings TensorFlow; use Python 3.10-3.12
+ml = ["deepface>=0.0.93", "tf-keras>=2.16"]  # brings TensorFlow: use Python 3.10-3.12
+liveness = ["mediapipe>=0.10.14", "opencv-contrib-python>=4.8,<5"]  # same OpenCV line as the core dependency
+voice = ["faster-whisper>=1.0"]
+mongo = ["pymongo>=4.6"]
 api = ["fastapi>=0.110", "uvicorn[standard]>=0.29", "python-multipart>=0.0.9"]
-app = ["streamlit>=1.40"]
+app = ["streamlit>=1.40", "streamlit-webrtc>=0.60", "av>=12"]
 eval = ["matplotlib>=3.8"]
-dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.5", "fastapi>=0.110", "python-multipart>=0.0.9"]
+dev = [
+    "pytest>=8", "httpx>=0.27", "ruff>=0.5", "mongomock>=4.1",
+    "fastapi>=0.110", "python-multipart>=0.0.9",
+]
+all = ["video-kyc-face-verification[ml,liveness,voice,mongo,api,app,eval]"]
+
+[project.scripts]
+videokyc-evaluate = "videokyc.face.evaluate:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -29,7 +43,7 @@ testpaths = ["tests"]
 addopts = "-q"
 
 [tool.ruff]
-line-length = 110
+line-length = 120
 target-version = "py310"
 
 [tool.ruff.lint]
@@ -37,4 +51,4 @@ select = ["E", "F", "I", "UP", "B", "S"]
 ignore = ["S101"]  # asserts are fine in tests
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["S"]
+"tests/*" = ["S", "E501"]

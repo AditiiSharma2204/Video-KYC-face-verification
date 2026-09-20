@@ -18,14 +18,23 @@ dist/
 .vscode/
 .idea/
 
-# models, datasets and outputs
+# models, datasets and local outputs (curated benchmark results live in docs/results/)
 .facematch/
+.videokyc/
 data/
-results/
+/results/
 *.onnx
 *.h5
 *.weights.h5
+*.task
 
-# NEVER commit identity documents or selfies
+# secrets
+.env
+*.pem
+
+# NEVER commit identity documents, selfies, recordings or answers
 *.pdf
+*.wav
+*.mp4
+*.webm
 samples/private/

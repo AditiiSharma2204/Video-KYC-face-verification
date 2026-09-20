@@ -4,8 +4,8 @@ import cv2
 import numpy as np
 import pytest
 
-from facematch import Config, FaceMatchPipeline
-from facematch.models import FaceBox
+from videokyc.face import FaceConfig, FaceMatchPipeline
+from videokyc.face.models import FaceBox
 
 
 def textured(seed: int = 0, size: int = 240, mean: int = 128) -> np.ndarray:
@@ -54,7 +54,7 @@ class FakeLiveness:
 @pytest.fixture
 def make_pipeline():
     def _make(embeddings, detector=None, liveness=None, **cfg):
-        config = Config(model_name="ArcFace", **cfg)  # threshold 0.68
+        config = FaceConfig(model_name="ArcFace", **cfg)  # threshold 0.68
         return FaceMatchPipeline(
             config, detector or FakeDetector(), FakeEmbedder(*embeddings), liveness
         )

@@ -1,0 +1,17 @@
+{
+  "model": "ArcFace",
+  "detector": "yunet",
+  "alignment": "box",
+  "degraded_reference": true,
+  "pairs_skipped_no_face": 0,
+  "default_threshold": 0.68,
+  "n_genuine": 400,
+  "n_impostor": 400,
+  "auc": 0.854,
+  "eer": 0.215,
+  "eer_threshold": 0.6039,
+  "best_threshold": 0.5773,
+  "balanced_accuracy": 0.79,
+  "tar_at_far_1e-2": 0.125,
+  "tar_at_far_1e-3": 0.055
+}
