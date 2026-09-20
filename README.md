@@ -1,6 +1,6 @@
-# Aadhaar Face Match
+# Video KYC Face Verification
 
-[![CI](https://github.com/AditiiSharma2204/aadhaar-face-match/actions/workflows/ci.yml/badge.svg)](https://github.com/AditiiSharma2204/aadhaar-face-match/actions)
+[![CI](https://github.com/AditiiSharma2204/Video-KYC-face-verification/actions/workflows/ci.yml/badge.svg)](https://github.com/AditiiSharma2204/Video-KYC-face-verification/actions)
 ![Python](https://img.shields.io/badge/python-3.10%E2%80%933.12-blue)
 
 Verify that a **live selfie** belongs to the person pictured on an **Aadhaar document** (e-Aadhaar PDF or scanned image).
@@ -59,7 +59,7 @@ Embeddings are compared by cosine distance against a per-model threshold (DeepFa
 Requires Python 3.10-3.12 (TensorFlow does not yet cover newer versions on every platform).
 
 ```bash
-git clone https://github.com/AditiiSharma2204/aadhaar-face-match && cd aadhaar-face-match
+git clone https://github.com/AditiiSharma2204/Video-KYC-face-verification && cd Video-KYC-face-verification
 python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -e ".[ml,api,app]"
 ```
@@ -101,7 +101,7 @@ print(result.decision, result.distance)
 
 **Docker**
 ```bash
-docker build -t aadhaar-face-match . && docker run -p 8000:8000 -v fm-models:/models aadhaar-face-match
+docker build -t video-kyc-face-verification . && docker run -p 8000:8000 -v fm-models:/models video-kyc-face-verification
 ```
 
 Configuration for the API/Docker is via environment: `FACEMATCH_MODEL`, `FACEMATCH_DETECTOR`, `FACEMATCH_THRESHOLD`, `FACEMATCH_LIVENESS=1`.

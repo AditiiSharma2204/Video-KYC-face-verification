@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "aadhaar-face-match"
+name = "video-kyc-face-verification"
 version = "1.0.0"
 description = "Verify a live selfie against the photo on an Aadhaar document (detection, alignment, ArcFace embeddings, calibrated decisions, REST API and UI)."
 readme = "README.md"
