@@ -18,6 +18,23 @@ Live webcam ─► face detection ─► blink liveness ─► image-quality gat
                                                                               MongoDB (masked record) ─► KYC completed
 ```
 
+## Screenshots
+
+**1 · ID upload and live check.** The Aadhaar card is recognised and its number masked, and the photo is cut out of
+the ID. The webcam feed counts blinks and warns about blurry frames, so a still photo can't pass.
+
+![ID recognised and blink liveness check](docs/screenshots/1-id-and-liveness.png)
+
+**2 · Voice KYC.** The live face matched the ID photo (ArcFace distance 0.503, below the 0.68 threshold). Ten
+questions follow; each can be read aloud and answered by voice (offline Whisper) or by typing.
+
+![Face matched, voice KYC questions](docs/screenshots/2-voice-kyc.png)
+
+**3 · Result.** KYC is completed. Answers that can be checked against the ID pass or fail; the rest are recorded. The
+stored audit record contains no name, date of birth, address or images.
+
+![KYC completed summary](docs/screenshots/3-result.png)
+
 ## Highlights
 
 * **Five ID types recognised** by an explainable rules engine that scores keywords *and* structurally validated ID
@@ -192,5 +209,6 @@ src/videokyc/
   session/    engine, models                     storage/  mongo, memory
   api.py  factory.py  privacy.py  errors.py      tools/    blink_demo
 app/          Streamlit UI          docs/DESIGN.md    design notes and limits
+                                    docs/screenshots/ app screenshots used in this README
 tests/        pytest suite          Dockerfile · docker-compose.yml · .github/workflows/ci.yml
 ```
